@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity
 
         mBitfinexBroker = new BitfinexBroker(SERVER_URL);
         mBitfinexBroker.connect();
+
     }
 
     @Override
@@ -42,6 +43,23 @@ public class MainActivity extends AppCompatActivity
         final QuoteManager quoteManager = mBitfinexBroker.getQuoteManager();
         quoteManager.registerTickCallback(callback);
         quoteManager.subscribeTicker("tBTCUSD");
+
+        new Thread(new Runnable()
+        {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(2000);
+
+                    mBitfinexBroker.disconnect();
+                }
+                catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        }).run();
     }
 
     @Override

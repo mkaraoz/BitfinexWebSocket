@@ -184,8 +184,6 @@ public class BitfinexBroker
 
     private void handleChannelCallback(final String message) {
         try {
-            // Channel callback
-            Log.d(TAG, "Channel callback");
             updateConnectionHeartbeat();
 
             // JSON callback
